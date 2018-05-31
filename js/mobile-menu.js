@@ -1,6 +1,6 @@
 $(document).ready(function () {
     function toggleMenu() {
-        var open = false; // this will allow the click function to 'toggle' between two different functions
+        let open = false; // this will allow the click function to 'toggle' between two different functions
 
         $(".mobile-button").click(function () { // click the mobile button
             $(this).toggleClass('rotate'); // between each click, toggle the rotate class
@@ -18,6 +18,8 @@ $(document).ready(function () {
 // global variable
     const mobileContainer = $(".mobile-container");
     const bodyVar = $("body");
+    const mobileNav = $(".mobile-nav");
+    const toggleMobile =$("#toggle-mobile");
     const mediaSize = 540;
     const resizeMenuFull = function () {
         if ($(window).width() > mediaSize) {
@@ -33,27 +35,28 @@ $(document).ready(function () {
     return $(window).on('resize', resizeMenuFull);
 
 // SHOWING the mobile function
-    function menuAnimate() {
-        mobileContainer.animate({left: '0'}, 250);
-        bodyVar.animate({left: '200px'}, 250);
+   function menuAnimate() {
+       mobileContainer.css({left: '0'});
+       bodyVar.css({left: '200px'});
     }
 
     // HIDING the mobile function
     function menuAnimateOri() {
-        mobileContainer.animate({left: '-200px'}, 250);
-        bodyVar.animate({left: '0'}, 250);
-    }
+        mobileContainer.css({left: '-200px'});
+        bodyVar.css({left: '0'});
+   }
 
     function fullMenu() {
         mobileContainer.css({left: '0', width: '100%', height: '30px'});
-        $(".mobile-nav").css("display", 'flex');
+        mobileNav.css({display: 'flex', flexDirection: 'row'});
         bodyVar.css({left: '0'});
-        $("#toggle-mobile").css("display", "none");
+        toggleMobile.css("display", "none");
         mobileContainer.css("position", "relative");
     }
 
     function mobileMenu() {
-        $("#toggle-mobile").css("display", "flex");
-        $(".mobile-container").css({left: '-200px', width: '30%', height: '100%'});
+        toggleMobile.css("display", "flex");
+        mobileContainer.css({ width: '30%', height: '100%', left: '-200px', position: 'fixed', display: 'flex', flexDirection: 'column'});
+        mobileNav.css({display: 'flex', flexDirection: 'column'})
     };
 });
