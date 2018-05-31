@@ -1,7 +1,6 @@
 $(document).ready(function () {
     function toggleMenu() {
         let open = false; // this will allow the click function to 'toggle' between two different functions
-
         $(".mobile-button").click(function () { // click the mobile button
             $(this).toggleClass('rotate'); // between each click, toggle the rotate class
             open = !open; // either the menu is open or not open
@@ -15,6 +14,7 @@ $(document).ready(function () {
         });
     }
 
+
 // global variable
     const mobileContainer = $(".mobile-container");
     const bodyVar = $("body");
@@ -24,11 +24,14 @@ $(document).ready(function () {
     const resizeMenuFull = function () {
         if ($(window).width() > mediaSize) {
             fullMenu();
-
+            $("#remove-button").removeClass('rotate');
         }
-        if ($(window).width() < 540) {
+        else if ($(window).width() < 540) {
             mobileMenu();
             toggleMenu();
+        }
+        else {
+            $("#remove-button").addClass('rotate');
         }
     };
     resizeMenuFull();
@@ -50,13 +53,17 @@ $(document).ready(function () {
         mobileContainer.css({left: '0', width: '100%', height: '30px'});
         mobileNav.css({display: 'flex', flexDirection: 'row'});
         bodyVar.css({left: '0'});
-        toggleMobile.css("display", "none");
         mobileContainer.css("position", "relative");
+        toggleMobile.css("display", "none");
+
+
     }
 
     function mobileMenu() {
         toggleMobile.css("display", "flex");
         mobileContainer.css({ width: '30%', height: '100%', left: '-200px', position: 'fixed', display: 'flex', flexDirection: 'column'});
-        mobileNav.css({display: 'flex', flexDirection: 'column'})
-    };
+        mobileNav.css({display: 'flex', flexDirection: 'column'});
+
+$
+    }
 });
